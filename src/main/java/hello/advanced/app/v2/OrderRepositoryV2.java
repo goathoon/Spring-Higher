@@ -1,20 +1,19 @@
-package hello.advanced.v1;
+package hello.advanced.app.v2;
 
 import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.hellotrace.HelloTraceV1;
+import hello.advanced.trace.hellotrace.HelloTraceV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
 @RequiredArgsConstructor
-public class OrderRepositoryV1 {
-    private final HelloTraceV1 trace;
+public class OrderRepositoryV2 {
+    private final HelloTraceV2 trace;
 
-    public void save(String itemId){
-        TraceStatus status = null;
+    public void save(TraceStatus status, String itemId){
         try {
-            status = trace.begin("OrderRepository.save()");
+            status = trace.beginSync(status.getTraceId(),"OrderRepository.save()");
 
             if (itemId.equals("ex")) {
                 throw new IllegalStateException("저장 예외 발생!");
