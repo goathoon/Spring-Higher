@@ -28,5 +28,6 @@ public class DecoratorPatternTest {
         TimeDecorator timeDecorator = new TimeDecorator(messageDecorator);
         DecoratorPatternClient client = new DecoratorPatternClient(timeDecorator);
         client.execute();
+
     }
 }
