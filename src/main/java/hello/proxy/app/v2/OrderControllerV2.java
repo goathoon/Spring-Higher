@@ -1,6 +1,7 @@
 package hello.proxy.app.v2;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,7 +13,7 @@ public class OrderControllerV2 {
     }
 
     @GetMapping("/v2/request")
-    public String request(String itemId) {
+    public String request(@RequestParam("itemId") String itemId) {
         orderService.orderItem(itemId);
         return "ok";
     }
